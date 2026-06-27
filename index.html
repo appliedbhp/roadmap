@@ -56,7 +56,7 @@
     box-shadow: 0 0 0 3px rgba(59, 109, 240, 0.15);
     background: #fff;
   }
-  .rmaw-root input.pin { letter-spacing: 0.3em; font-weight: 600; max-width: 140px; }
+  .rmaw-root input.pin { letter-spacing: 0.3em; font-weight: 600; max-width: 140px; -webkit-text-security: disc; text-security: disc; }
   .rmaw-root input[type="checkbox"] { width: auto; max-width: none; margin: 0; }
   .rmaw-root .checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
   .rmaw-root .checkbox-row label { margin: 0; text-transform: none; font-size: 14px; font-weight: 600; color: var(--text); cursor: pointer; }
@@ -190,11 +190,11 @@
   </div>
   <div class="row">
     <label>5-Digit PIN</label>
-    <input id="startPin" class="pin" type="password" inputmode="numeric" maxlength="5" placeholder="•••••">
+    <input id="startPin" class="pin" type="text" inputmode="numeric" pattern="\d*" maxlength="5" placeholder="•••••" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-bwignore="true">
   </div>
   <div class="row" id="confirmPinRow" style="display:none;">
     <label>Confirm PIN</label>
-    <input id="startPinConfirm" class="pin" type="password" inputmode="numeric" maxlength="5" placeholder="•••••">
+    <input id="startPinConfirm" class="pin" type="text" inputmode="numeric" pattern="\d*" maxlength="5" placeholder="•••••" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-bwignore="true">
   </div>
   <div class="row">
     <label>Level</label>
@@ -225,7 +225,7 @@
   </div>
   <div class="row">
     <label>5-Digit PIN</label>
-    <input id="lookupPin" class="pin" type="password" inputmode="numeric" maxlength="5" placeholder="•••••">
+    <input id="lookupPin" class="pin" type="text" inputmode="numeric" pattern="\d*" maxlength="5" placeholder="•••••" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-bwignore="true">
   </div>
   <button onclick="lookupClient()"><i class="bi bi-search"></i> Look Up</button>
   <div id="lookupStatus"></div>
