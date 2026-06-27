@@ -420,7 +420,33 @@ document.addEventListener("input", (e) => {
   }
 });
 
-initRememberedLicenseKey();
+// ---- URL prefill: ?clientId=...&assessorName=...&licenseKey=...&level=...
+// Deliberately does NOT support a pin= param — a PIN in the URL would end up
+// in browser history, server logs, and link previews, defeating the point
+// of having one. Assessors still have to type the PIN by hand. ----
+function applyUrlPrefill() {
+  const params = new URLSearchParams(window.location.search);
+  const fieldMap = {
+    clientId: ["clientId", "lookupClientId"],
+    assessorName: ["assessorName", "lookupAssessorName"],
+    licenseKey: ["licenseKey", "lookupLicenseKey"],
+    level: ["level"]
+  };
+  let licenseKeyProvided = false;
+  Object.entries(fieldMap).forEach(([param, ids]) => {
+    if (!params.has(param)) return;
+    const value = params.get(param);
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = value;
+    });
+    if (param === "licenseKey" && value) licenseKeyProvided = true;
+  });
+  return licenseKeyProvided;
+}
+
+const licenseKeyFromUrl = applyUrlPrefill();
+if (!licenseKeyFromUrl) initRememberedLicenseKey();
 
 async function fetchAllRoadmap(level) {
   const url = new URL(`${WORKER_URL}/roadmap`);
