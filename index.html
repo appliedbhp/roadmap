@@ -165,6 +165,12 @@
 </style>
 
 <div class="rmaw-root">
+<!-- Decoy fields: some browsers/password managers latch onto the first
+     username/password-looking inputs on the page and try to autofill or
+     offer to save credentials into them. These absorb that targeting so
+     it doesn't land on the real numeric PIN fields below. -->
+<input type="text" name="username" autocomplete="username" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" tabindex="-1" aria-hidden="true">
+<input type="password" name="password" autocomplete="new-password" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" tabindex="-1" aria-hidden="true">
 <div class="page">
 
 <div id="intake" class="card active">
@@ -190,11 +196,11 @@
   </div>
   <div class="row">
     <label>5-Digit PIN</label>
-    <input id="startPin" class="pin" type="text" inputmode="numeric" pattern="\d*" maxlength="5" placeholder="•••••" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-bwignore="true">
+    <input id="startPin" name="rmaw_pin_start" class="pin" type="text" inputmode="numeric" pattern="\d*" maxlength="5" placeholder="•••••" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-bwignore="true">
   </div>
   <div class="row" id="confirmPinRow" style="display:none;">
     <label>Confirm PIN</label>
-    <input id="startPinConfirm" class="pin" type="text" inputmode="numeric" pattern="\d*" maxlength="5" placeholder="•••••" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-bwignore="true">
+    <input id="startPinConfirm" name="rmaw_pin_confirm" class="pin" type="text" inputmode="numeric" pattern="\d*" maxlength="5" placeholder="•••••" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-bwignore="true">
   </div>
   <div class="row">
     <label>Level</label>
@@ -225,7 +231,7 @@
   </div>
   <div class="row">
     <label>5-Digit PIN</label>
-    <input id="lookupPin" class="pin" type="text" inputmode="numeric" pattern="\d*" maxlength="5" placeholder="•••••" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-bwignore="true">
+    <input id="lookupPin" name="rmaw_pin_lookup" class="pin" type="text" inputmode="numeric" pattern="\d*" maxlength="5" placeholder="•••••" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-bwignore="true">
   </div>
   <button onclick="lookupClient()"><i class="bi bi-search"></i> Look Up</button>
   <div id="lookupStatus"></div>
